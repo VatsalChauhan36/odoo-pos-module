@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!-- product.template inherit form view -->
+    <record id="product_template_form_view" model="ir.ui.view">
+        <field name="name">product.template.inherit.view.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="account.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='invoicing']/group" position="inside">
+                <group>
+                    <field name="is_extra_tax" />
+                    <field name="extra_tax_id" invisible="not is_extra_tax" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
