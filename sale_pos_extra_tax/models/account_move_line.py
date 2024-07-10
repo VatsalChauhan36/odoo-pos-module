@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
-from odoo import models
+from odoo import models, api
 
 
 class AccountMoveLine(models.Model):
     _inherit = 'account.move.line'
+
+    @api.depends('product_id', 'product_uom_id', 'move_id.partner_id')
+    def _compute_tax_ids(self):
+        super()._compute_tax_ids()
 
     def _get_computed_taxes(self):
         company = self.company_id
